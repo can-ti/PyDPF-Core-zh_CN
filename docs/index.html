@@ -1,0 +1,850 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PyDPF-Core &#8212; PyDPF-Core</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="_static/css\ansys_sphinx_theme.css?v=35e44410" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=ed0b7eb7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+ 
+<link href="_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="_static/documentation_options.js?v=1e8b1a81"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js\table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://dpf.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.12';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started" href="getting_started/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="search.html"
+  method="get"
+>
+  <i class="fa fa-search" aria-hidden="true" id="search-icon"></i>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pydpf-core-v0-12">PyDPF-Core</option>
+    
+  </select>
+  
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "";
+    var indexUid = "pydpf-core-v0-12";
+  </script>
+
+  <script src="_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="PyDPF-Core - Home"/>
+    <script>document.write(`<img src="_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="PyDPF-Core - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="operator_reference.html">
+                        Operators
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="concepts/index.html">
+                        Concepts
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pydpf-core" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="operator_reference.html">
+                        Operators
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="concepts/index.html">
+                        Concepts
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pydpf-core" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="#"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+      
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="pydpf-core">
+<span id="ref-main-index"></span><h1>PyDPF-Core<a class="headerlink" href="#pydpf-core" title="Link to this heading">#</a></h1>
+<p>Ansys 数据处理框架 (DPF) 为数值模拟用户和工程师提供一个访问和转换模拟数据的工具箱。借助 DPF，您可以在模拟工作流程内对大量模拟数据执行复杂的前处理或后处理。</p>
+<p>DPF 是一个独立的、与物理无关的工具，您可以将其插入许多应用程序中，用于数据输入和数据输出，包括可视化和结果绘图。下表显示了 DPF 支持的应用程序的详尽列表及其相关格式：</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Solver</strong></p></th>
+<th class="head"><p><strong>File format</strong></p></th>
+<th class="head"><p><strong>Server version</strong></p></th>
+<th class="head"><p><strong>DPF examples</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MAPDL</p></td>
+<td><div class="line-block">
+<div class="line">.rst, .mode</div>
+<div class="line">.rfrq, .rdsp</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line"><strong>1.0</strong> and later</div>
+<div class="line">(<em>Ansys 2021 R1</em>)</div>
+</div>
+</td>
+<td><p><a class="reference internal" href="examples/00-basic/00-basic_example.html#ref-basic-example"><span class="std std-ref">Basic DPF-Core usage</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>LS DYNA</p></td>
+<td><p>.d3plot, .binout</p></td>
+<td><div class="line-block">
+<div class="line"><strong>4.0</strong> and later</div>
+<div class="line">(<em>Ansys 2022 R2</em>)</div>
+</div>
+</td>
+<td><p><span class="xref std std-ref">lsdyna_operators</span></p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><p>Fluent</p></td>
+<td rowspan="2"><div class="line-block">
+<div class="line"><em>CFF restart files</em></div>
+<div class="line">.cas/dat.h5</div>
+</div>
+</td>
+<td rowspan="3"><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><strong>7.0</strong> and later</div>
+<div class="line">(<em>Ansys 2024 R1 pre0</em>)</div>
+</div>
+</td>
+<td><p><span class="xref std std-ref">ref_fluids_model</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="xref std std-ref">ref_fluids_mesh</span></p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line"><em>Project files</em></div>
+<div class="line">.flprj</div>
+</div>
+</td>
+<td><p><span class="xref std std-ref">ref_fluids_results</span></p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><p>CFX</p></td>
+<td rowspan="2"><div class="line-block">
+<div class="line"><em>CFF files</em></div>
+<div class="line">.cas/dat.cff</div>
+</div>
+</td>
+<td rowspan="3"><div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><strong>7.0</strong> and later</div>
+<div class="line">(<em>Ansys 2024 R1 pre0</em>)</div>
+</div>
+</td>
+<td><p><span class="xref std std-ref">ref_fluids_model</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="xref std std-ref">ref_fluids_mesh</span></p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><em>Project files</em></div>
+<div class="line">.flprj</div>
+</div>
+</td>
+<td><p><span class="xref std std-ref">ref_fluids_results</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>可视化由 VTK 确保，并利用 <a class="reference external" href="https://docs.pyvista.org">PyVista 工具</a> 。</p>
+<p>您可以利用众多现成的 DPF 运算符来处理和转换此数据。您还可以将运算符串联在一起，以便创建简单或复杂的数据处理工作流，可用于重复评估或后续评估。</p>
+<p>DPF 中的数据是基于与物理无关的数学量定义的，这些数学量以自给自足的实体（称为 <strong>字段</strong> ）进行描述。这使得 DPF 成为一个模块化的、易于使用的工具，具有广泛的功能。</p>
+<a class="reference internal image-reference" href="_images/dpf-flow.png"><img alt="DPF flow" src="_images/dpf-flow.png" style="width: 670px;" /></a>
+<p><code class="docutils literal notranslate"><span class="pre">ansys.dpf.core</span></code> 软件包为 DPF 提供了一个 Python 接口，该接口可在不离开 Python 环境的情况下，快速对各种 Ansys 文件格式和物理求解进行后处理。</p>
+<section id="brief-demo">
+<h2>Brief demo<a class="headerlink" href="#brief-demo" title="Link to this heading">#</a></h2>
+<p>下面是如何打开由 MAPDL（或其他 ANSYS 求解器）产生的结果文件并提取结果：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">find_simple_bar</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>以下是绘制位移结果的方法：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">disp</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span><span class="o">.</span><span class="n">X</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">meshed_region</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">disp</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">fields_container</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>有关如何使用 PyDPF-Core 的综合示例，请参见 <a class="reference internal" href="examples/index.html#gallery"><span class="std std-ref">Examples</span></a> 。</p>
+</section>
+<section id="key-features">
+<h2>Key features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h2>
+<p><strong>计算效率</strong></p>
+<p>DPF 是基于新型硬件架构的现代化框架。得益于持续发展，新功能会频繁增加。</p>
+<p><strong>通用接口</strong></p>
+<p>DPF 与物理无关，这意味着它的使用不局限于特定领域、物理求解或文件格式。</p>
+<p><strong>可扩展性和定制性</strong></p>
+<p>DPF 是围绕两个核心实体而开发的：</p>
+<ul class="simple">
+<li><p>以 <strong>field</strong> 表示的数据</p></li>
+<li><p>针对该数据执行操作的 <strong>operator</strong></p></li>
+</ul>
+<p>每一个 DPF 功能都是通过允许框架组件化的 operators 来开发的。由于 DPF 是基于插件的，因此可以轻松添加新功能或新格式。</p>
+</section>
+<section id="accessing-and-enriching-dpf-capabilities">
+<h2>Accessing and enriching DPF capabilities<a class="headerlink" href="#accessing-and-enriching-dpf-capabilities" title="Link to this heading">#</a></h2>
+<p>绝大多数 DPF 功能都可以使用 operator 访问。有关更多信息，请参见 <a class="reference internal" href="operator_reference.html#ref-dpf-operators-reference"><span class="std std-ref">Operators</span></a> 。</p>
+<p>DPF 还遵循 <a class="reference internal" href="getting_started/licensing.html#ref-licensing"><span class="std std-ref">Licensing</span></a> 中详述的许可策略。</p>
+<p>以下各节为摘要。更多信息，请参阅 <a class="reference internal" href="concepts/waysofusing.html#user-guide-waysofusing"><span class="std std-ref">DPF capabilities and scripting languages</span></a> 。</p>
+<p><strong>访问 DPF 服务器文件</strong></p>
+<p>当 DPF 服务器文件可用时，可访问 DPF 功能。可使用 <strong>Ansys installer</strong> 和 <strong>DPF Server</strong> 访问这些文件。</p>
+<ul class="simple">
+<li><p>要使用  <strong>Ansys installer</strong>，请使用首选分发渠道下载标准  <strong>Ansys installer</strong>，并按照安装程序说明安装 Ansys。有关获取 Ansys 授权副本的信息，请访问 <a class="reference external" href="https://www.ansys.com/">Ansys 网站</a> 。</p></li>
+<li><p>DPF 服务器软件包独立于 Ansys 安装程序。有关详细信息，请参阅 <a class="reference internal" href="getting_started/dpf_server.html#ref-dpf-server"><span class="std std-ref">DPF Server</span></a> 。</p></li>
+</ul>
+<p><strong>使用脚本访问功能</strong></p>
+<ul class="simple">
+<li><p>C++ 文档:</p>
+<ul>
+<li><p>在 Ansys Developer 门户网站的 <a class="reference external" href="https://developer.ansys.com/docs">开发人员文档</a> 页面上，请参阅 <strong>数据处理框架 (DPF)</strong> 。</p></li>
+</ul>
+</li>
+<li><p>PyDPF 文档:</p>
+<ul>
+<li><p><a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/">PyDPF-Core documentation</a></p></li>
+<li><p><a class="reference external" href="https://post.docs.pyansys.com/version/stable/">PyDPF-Post documentation</a></p></li>
+</ul>
+</li>
+<li><p>Mechanical scripting (IronPython):</p>
+<ul>
+<li><p><a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v232/en/act_script/mech_apis_data_process_frame.html">Data Processing Framework</a>
+in the <em>Scripting in Mechanical Guide</em>.</p></li>
+<li><p><a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v231/en/wb_sim/ds_python_result.html">Python Result</a>
+in the <em>Mechanical User’s Guide</em>.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>增强 DPF 功能</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.ansys.com/product/DPF-C-Client-Library-2023-R2/modules.xhtml">User guide</a> in the <em>DPF C++ Client Library</em></p></li>
+<li><p><a class="reference internal" href="user_guide/custom_operators.html#user-guide-custom-operators"><span class="std std-ref">Custom operators</span></a> in the PyDPF-Core documentation</p></li>
+<li><p><a class="reference external" href="https://astonishing-hyacinth-e64.notion.site/How-to-write-a-new-solver-reader-as-a-DPF-s-plugin-bd2d2a3cf51f47ef9e70df45d64f89cb">How to write a new solver reader as a DPF plugin</a></p></li>
+</ul>
+<section id="documentation-and-issues">
+<h3>Documentation and issues<a class="headerlink" href="#documentation-and-issues" title="Link to this heading">#</a></h3>
+<p>最新稳定发行版的 PyDPF-Core 文档托管在 <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/">PyDPF-Core 文档</a> 中。</p>
+<p>在文档标题栏的右上角，可以选择从查看最新稳定版文档切换到查看开发版本或以前发布版本的文档。</p>
+<p>你也可以 <a class="reference external" href="https://cheatsheets.docs.pyansys.com/pydpf-core_cheat_sheet.png">查看</a> 或 <a class="reference external" href="https://cheatsheets.docs.pyansys.com/pydpf-core_cheat_sheet.pdf">下载</a> PyDPF-Core cheatsheets。
+这一页参考资料提供了使用 PyDPF-Core 的语法规则和命令。</p>
+<p>在 <a class="reference external" href="https://github.com/ansys/pydpf-core/issues">PyDPF-Core Issues</a> 页面，您可以创建问题来报告错误和申请新功能。
+在 <a class="reference external" href="https://github.com/ansys/pydpf-core/discussions">PyDPF-Core Discussions</a> 页面或 Ansys Developer 门户网站上的 <a class="reference external" href="https://discuss.ansys.com/">Discussions</a> 页面，您可以发布问题、分享想法并获得社区反馈。</p>
+<p>如需联系项目支持团队，请发送电子邮件至 <a class="reference external" href="mailto:pyansys&#46;core&#37;&#52;&#48;ansys&#46;com">pyansys<span>&#46;</span>core<span>&#64;</span>ansys<span>&#46;</span>com</a> 。</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-demo">Brief demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-and-enriching-dpf-capabilities">Accessing and enriching DPF capabilities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation-and-issues">Documentation and issues</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/index.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.15.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

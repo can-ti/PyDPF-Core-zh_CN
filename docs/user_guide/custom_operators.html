@@ -1,0 +1,1085 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Custom operators &#8212; PyDPF-Core</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css\ansys_sphinx_theme.css?v=35e44410" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed0b7eb7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+ 
+<link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../_static/documentation_options.js?v=1e8b1a81"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js\table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/custom_operators';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://dpf.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.12';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Client-server communication" href="server_types.html" />
+    <link rel="prev" title="Plot" href="plotting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="../_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="../search.html"
+  method="get"
+>
+  <i class="fa fa-search" aria-hidden="true" id="search-icon"></i>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pydpf-core-v0-12">PyDPF-Core</option>
+    
+  </select>
+  
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "";
+    var indexUid = "pydpf-core-v0-12";
+  </script>
+
+  <script src="../_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="PyDPF-Core - Home"/>
+    <script>document.write(`<img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="PyDPF-Core - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../operator_reference.html">
+                        Operators
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../concepts/index.html">
+                        Concepts
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pydpf-core" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../operator_reference.html">
+                        Operators
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../concepts/index.html">
+                        Concepts
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pydpf-core" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="model.html">DPF model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fields_container.html">Fields container and fields</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plot</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Custom operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_types.html">Client-server communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_context.html">Server context</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xmlfiles.html">DPF XML files</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">User guide</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Custom operators</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="custom-operators">
+<span id="user-guide-custom-operators"></span><h1>Custom operators<a class="headerlink" href="#custom-operators" title="Link to this heading">#</a></h1>
+<p><strong>自定义运算符</strong></p>
+<p>在 Ansys 2023 R1 及更高版本中，您可以在 CPython 中创建自定义运算符。
+创建自定义运算符包括以符合 DPF 的方式封装 Python 例程，这样就可以像访问 PyDPF-Core 中的 <code class="xref py py-class docutils literal notranslate"><span class="pre">ansys.dpf.core.dpf_operator.Operator</span></code> 类或任何受支持的客户端 API 中的本地运算符一样访问它们。</p>
+<p>由于支持自定义操作符，PyDPF-Core 成为了一种开发工具：</p>
+<ul class="simple">
+<li><p><strong>Accessibility:</strong> 一个简单的脚本就能定义一个基本的运算符插件。</p></li>
+<li><p><strong>Componentization（组件化）:</strong> 具有类似应用的操作符可归入 Python 插件包。</p></li>
+<li><p><strong>Easy distribution（易于分发）:</strong> 标准 Python 工具可用于打包、上传和下载自定义操作符。</p></li>
+<li><p><strong>Dependency management（依赖管理）:</strong> 可以在 Python 包中添加第三方 Python 模块。</p></li>
+<li><p><strong>Reusability（可复用性）:</strong> 经过记录和打包的运算符可以在无数个工作流程中重复使用。</p></li>
+<li><p><strong>Remotable and parallel computing（分布式及并行计算）:</strong> 本地 DPF 功能由自定义操作符继承。</p></li>
+</ul>
+<p>创建自定义运算符的唯一前提是熟悉本地运算符。更多信息，请参阅 <a class="reference internal" href="operators.html#ref-user-guide-operators"><span class="std std-ref">Operators</span></a> 。</p>
+<section id="install-module">
+<h2>Install module<a class="headerlink" href="#install-module" title="Link to this heading">#</a></h2>
+<p><strong>安装模块</strong></p>
+<p>在完成 Ansys 统一安装后，您必须在 Ansys 安装程序的 Python 解释器中安装 <code class="docutils literal notranslate"><span class="pre">ansys-dpf-core</span></code> 模块。</p>
+<ol class="arabic simple">
+<li><p>下载适用于您操作系统的安装脚本：</p>
+<ul class="simple">
+<li><p>对于 Windows，请下载 <a class="reference download internal" download="" href="../_downloads/f2a946bd7f90d3d33515a361c428380f/install_ansys_dpf_core_in_ansys.ps1"><code class="xref download docutils literal notranslate"><span class="pre">PowerShell</span> <span class="pre">script</span></code></a> 。</p></li>
+<li><p>对于 Linux，请下载  <a class="reference download internal" download="" href="../_downloads/552872e543c3c85d749d2cb67e00c0af/install_ansys_dpf_core_in_ansys.sh"><code class="xref download docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">script</span></code></a> 。</p></li>
+</ul>
+</li>
+<li><p>使用可选参数运行下载的脚本进行安装：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-awp_root</span></code> ：Ansys 安装文件夹的根路径。例如，2023 R1 安装文件夹以 <code class="docutils literal notranslate"><span class="pre">Ansys</span> <span class="pre">Inc/v231</span></code> 结尾，默认环境变量为 <code class="docutils literal notranslate"><span class="pre">AWP_ROOT231</span></code> 。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-pip_args</span></code> ：添加到 <code class="docutils literal notranslate"><span class="pre">pip</span></code> 命令的可选参数。例如，<cite>-extra-index-url`</cite> 或 <code class="docutils literal notranslate"><span class="pre">-trusted-host</span></code> 。</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>卸载模块</strong></p>
+<p>如果您想从 Ansys 安装中卸载 <code class="docutils literal notranslate"><span class="pre">ansys-dpf-core</span></code> 模块，可以这样做。</p>
+<ol class="arabic simple">
+<li><p>下载适用于您操作系统的卸载脚本：</p>
+<ul class="simple">
+<li><p>对于 Windows，请下载 <a class="reference download internal" download="" href="../_downloads/9179bc817b36fb88f232383ca181865e/uninstall_ansys_dpf_core_in_ansys.ps1"><code class="xref download docutils literal notranslate"><span class="pre">PowerShell</span> <span class="pre">script</span></code></a> 。</p></li>
+<li><p>对于 Linux，请下载 <a class="reference download internal" download="" href="../_downloads/d5bf8cd92339935409e6aea9baf587a0/uninstall_ansys_dpf_core_in_ansys.sh"><code class="xref download docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">script</span></code></a> 。</p></li>
+</ul>
+</li>
+<li><p>使用可选参数运行下载的脚本进行卸载：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-awp_root</span></code>：Ansys 安装文件夹的根路径。例如，2023 R1 安装文件夹以 <code class="docutils literal notranslate"><span class="pre">Ansys</span> <span class="pre">Inc/v231</span></code> 结尾，默认环境变量为 <code class="docutils literal notranslate"><span class="pre">AWP_ROOT231</span></code> 。</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="create-operators">
+<h2>Create operators<a class="headerlink" href="#create-operators" title="Link to this heading">#</a></h2>
+<p><strong>创建运算符</strong></p>
+<p>您可以创建一个基本运算符插件，也可以创建一个包含多个运算符的插件包。</p>
+<section id="basic-operator-plugin">
+<h3>Basic operator plugin<a class="headerlink" href="#basic-operator-plugin" title="Link to this heading">#</a></h3>
+<p><strong>基础操作符插件</strong></p>
+<p>要创建一个基本的操作符插件，您需要编写一个简单的 Python 脚本。
+操作符实现源于 <code class="xref py py-class docutils literal notranslate"><span class="pre">ansys.dpf.core.custom_operator.CustomOperatorBase</span></code> 类和对 <code class="xref py py-func docutils literal notranslate"><span class="pre">ansys.dpf.core.custom_operator.record_operator()</span></code> 方法的调用。</p>
+<p>本示例脚本展示了如何创建基本的运算符插件：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core.custom_operator</span> <span class="kn">import</span> <span class="n">CustomOperatorBase</span><span class="p">,</span> <span class="n">record_operator</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core.operator_specification</span> <span class="kn">import</span> <span class="n">CustomSpecification</span><span class="p">,</span> <span class="n">SpecificationProperties</span><span class="p">,</span> \
+    <span class="n">PinSpecification</span>
+
+
+<span class="k">class</span> <span class="nc">CustomOperator</span><span class="p">(</span><span class="n">CustomOperatorBase</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;name_of_my_custom_operator&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">specification</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomSpecification</span><span class="p">:</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="n">CustomSpecification</span><span class="p">()</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;What the Operator does.&quot;</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="n">PinSpecification</span><span class="p">(</span><span class="s2">&quot;name_of_pin_0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">FieldsContainer</span><span class="p">],</span>
+                                <span class="s2">&quot;Describe pin 0.&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="n">PinSpecification</span><span class="p">(</span><span class="s2">&quot;name_of_pin_0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">],</span> <span class="s2">&quot;Describe pin 0.&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">SpecificationProperties</span><span class="p">(</span>
+            <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;user name&quot;</span><span class="p">,</span>
+            <span class="n">category</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">,</span>
+            <span class="n">license</span><span class="o">=</span><span class="s2">&quot;license&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">spec</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">field</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">FieldsContainer</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># compute data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_succeeded</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_operators</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">record_operator</span><span class="p">(</span><span class="n">CustomOperator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在该类的各种属性中，您可以指定以下内容：</p>
+<ul class="simple">
+<li><p>自定义操作符的名称</p></li>
+<li><p>描述该操作符的工作</p></li>
+<li><p>Dictionary for each input and output pin, which includes the name, a list of supported types, a description,
+and whether it is optional and/or ellipsis (meaning that the specification is valid for pins going from pin
+number <em>x</em> to infinity)</p></li>
+<li><p>操作符属性列表，包括在文档和代码生成中使用的名称以及操作符类别。可选的 <code class="docutils literal notranslate"><span class="pre">license</span></code> 属性允许定义运行操作符时需要检查的许可证。
+将其设置为 <code class="docutils literal notranslate"><span class="pre">any_dpf_supported_increments</span></code> 可允许 DPF 当前接受的任何许可证（参见 <span class="xref std std-ref">here</span> ）</p></li>
+</ul>
+<p>有关编写操作符插件的综合示例，请参阅 <a class="reference internal" href="../examples/08-python-operators/index.html#python-operators"><span class="std std-ref">Examples of creating custom operator plugins</span></a> 。</p>
+</section>
+<section id="plug-in-package-with-multiple-operators">
+<h3>Plug-in package with multiple operators<a class="headerlink" href="#plug-in-package-with-multiple-operators" title="Link to this heading">#</a></h3>
+<p><strong>具有多个运算符的插件包</strong></p>
+<p>要创建一个包含多个运算符或复杂例程的插件包，需要编写一个 Python 包。编写软件包而不是简单脚本的好处是：</p>
+<ul class="simple">
+<li><p><strong>Componentization（组件化）:</strong> 您可以将代码分割成多个 Python 模块或文件。</p></li>
+<li><p><strong>Distribution（分发）:</strong> 您可以使用标准 Python 工具上传和下载软件包。</p></li>
+<li><p><strong>Documentation（文档）:</strong> 您可以在软件包中添加 README 文件、文档、测试和示例。</p></li>
+</ul>
+<p>带有依赖项的插件包由包含必要文件的文件夹组成。假设插件包的名称是 <code class="docutils literal notranslate"><span class="pre">custom_plugin</span></code> 。以这个名称命名的文件夹至少需要包含四个文件：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">operators.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">operators_loader.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">common.py</span></code></p></li>
+</ul>
+<p><strong>__init__.py file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件包含以下代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operators_loader</span> <span class="kn">import</span> <span class="n">load_operators</span>
+</pre></div>
+</div>
+<p><strong>operators.py file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">operators.py</span></code> 文件包含这样的代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core.custom_operator</span> <span class="kn">import</span> <span class="n">CustomOperatorBase</span><span class="p">,</span> <span class="n">record_operator</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core.operator_specification</span> <span class="kn">import</span> <span class="n">CustomSpecification</span><span class="p">,</span> <span class="n">SpecificationProperties</span><span class="p">,</span> \
+    <span class="n">PinSpecification</span>
+
+
+<span class="k">class</span> <span class="nc">CustomOperator</span><span class="p">(</span><span class="n">CustomOperatorBase</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;name_of_my_custom_operator&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">specification</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomSpecification</span><span class="p">:</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="n">CustomSpecification</span><span class="p">()</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;What the Operator does.&quot;</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="n">PinSpecification</span><span class="p">(</span><span class="s2">&quot;name_of_pin_0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">FieldsContainer</span><span class="p">],</span>
+                                <span class="s2">&quot;Describe pin 0.&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="n">PinSpecification</span><span class="p">(</span><span class="s2">&quot;name_of_pin_0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">],</span> <span class="s2">&quot;Describe pin 0.&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">SpecificationProperties</span><span class="p">(</span>
+            <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;user name&quot;</span><span class="p">,</span>
+            <span class="n">category</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">,</span>
+            <span class="n">license</span><span class="o">=</span><span class="s2">&quot;license&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">spec</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">field</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">FieldsContainer</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># compute data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_succeeded</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>operators_loader.py file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">operators_loader.py</span></code> 文件中包含如下代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">custom_plugin</span> <span class="kn">import</span> <span class="n">operators</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core.custom_operator</span> <span class="kn">import</span> <span class="n">record_operator</span>
+
+<span class="k">def</span> <span class="nf">load_operators</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">record_operator</span><span class="p">(</span><span class="n">operators</span><span class="o">.</span><span class="n">CustomOperator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>common.py file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">common.py</span></code> 文件包含以类和函数形式存在的 Python 程序:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在这里以类和函数的形式编写所需的 python 例程。</span>
+</pre></div>
+</div>
+<section id="third-party-dependencies">
+<h4>Third-party dependencies<a class="headerlink" href="#third-party-dependencies" title="Link to this heading">#</a></h4>
+<p><strong>第三方依赖项</strong></p>
+<p>要将第三方模块作为依赖项添加到插件包中，应在插件包文件夹旁边的 XML 文件中创建并引用一个文件夹或 ZIP 文件，其中包含依赖项的站点。
+XML 文件的名称必须与插件包相同，并加上 <code class="docutils literal notranslate"><span class="pre">.xml</span></code> 的扩展名。</p>
+<p>当调用 <code class="xref py py-func docutils literal notranslate"><span class="pre">ansys.dpf.core.core.load_library()</span></code> 方法时，PyDPF-Core 会使用 <code class="docutils literal notranslate"><span class="pre">site</span></code> Python 模块将自定义站点添加到 Python 解释器的路径中。</p>
+<p>要创建这些自定义站点，请执行以下操作：</p>
+<ol class="arabic simple">
+<li><p>在 Python 虚拟环境中安装插件包的 requirements。</p></li>
+<li><p>删除站点软件包中不必要的文件夹，并将其压缩为 ZIP 文件。</p></li>
+<li><p>将 ZIP 文件放入插件包。</p></li>
+<li><p>如上所述，在 XML 文件中引用 ZIP 文件的路径。</p></li>
+</ol>
+<p>为了简化这一步骤，可以在插件包中添加一个 requirements 文件：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wheel</span>
+<span class="n">pygltflib</span>
+</pre></div>
+</div>
+<p>对于这种方法，请执行以下操作：</p>
+<ol class="arabic">
+<li><p>为您的操作系统下载对应的脚本：</p>
+<ul class="simple">
+<li><p>For Windows, download this <a class="reference download internal" download="" href="../_downloads/be1092fa007e10f40b7f9ea7fdfa881a/create_sites_for_python_operators.ps1"><code class="xref download docutils literal notranslate"><span class="pre">PowerShell</span> <span class="pre">script</span></code></a>.</p></li>
+<li><p>For Linux, download this <a class="reference download internal" download="" href="../_downloads/865325386e9f426c0639d8c3be57bb75/create_sites_for_python_operators.sh"><code class="xref download docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">script</span></code></a>.</p></li>
+</ul>
+</li>
+<li><p>使用必选参数运行下载的脚本：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-pluginpath</span></code>: 包含插件包的文件夹路径。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-zippath</span></code>: ZIP 文件的路径和名称。</p></li>
+</ul>
+<p>可选参数包括：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-pythonexe</span></code>: 您选择的 Python 可执行文件的路径。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-tempfolder</span></code>: 临时文件夹的路径。Windows 下默认为环境变量 <code class="docutils literal notranslate"><span class="pre">TEMP</span></code>，Linux 下默认为 <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code> 。</p></li>
+</ul>
+</li>
+<li><p>在你的操作系统中执行命令：</p>
+<ul>
+<li><p>在 Windows PowerShell，运行：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">create_sites_for_python_operators</span><span class="o">.</span><span class="n">ps1</span> <span class="o">-</span><span class="n">pluginpath</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">plugin</span> <span class="o">-</span><span class="n">zippath</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">plugin</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="n">winx64</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+</li>
+<li><p>在 Linux Shell 中，运行：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">create_sites_for_python_operators</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">pluginpath</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">plugin</span> <span class="o">-</span><span class="n">zippath</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">plugin</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="n">linx64</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p>我们再假设你的插件包的名字是 <code class="docutils literal notranslate"><span class="pre">custom_plugin</span></code> 。一个带有这个名字的文件夹将包含这些文件：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">operators.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">operators_loader.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">common.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">winx64.zip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linx64.zip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">custom_plugin.xml</span></code></p></li>
+</ul>
+<p><strong>__init__.py file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件包含以下代码:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">operators_loader</span> <span class="kn">import</span> <span class="n">load_operators</span>
+</pre></div>
+</div>
+<p><strong>operators.py file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">operators.py</span></code> 文件包含这样的代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core.custom_operator</span> <span class="kn">import</span> <span class="n">CustomOperatorBase</span><span class="p">,</span> <span class="n">record_operator</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core.operator_specification</span> <span class="kn">import</span> <span class="n">CustomSpecification</span><span class="p">,</span> <span class="n">SpecificationProperties</span><span class="p">,</span> \
+    <span class="n">PinSpecification</span>
+
+
+<span class="k">class</span> <span class="nc">CustomOperator</span><span class="p">(</span><span class="n">CustomOperatorBase</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;name_of_my_custom_operator&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">specification</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CustomSpecification</span><span class="p">:</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="n">CustomSpecification</span><span class="p">()</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;What the Operator does.&quot;</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="n">PinSpecification</span><span class="p">(</span><span class="s2">&quot;name_of_pin_0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">FieldsContainer</span><span class="p">],</span>
+                                <span class="s2">&quot;Describe pin 0.&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">outputs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="n">PinSpecification</span><span class="p">(</span><span class="s2">&quot;name_of_pin_0&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">],</span> <span class="s2">&quot;Describe pin 0.&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="n">spec</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">SpecificationProperties</span><span class="p">(</span>
+            <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;user name&quot;</span><span class="p">,</span>
+            <span class="n">category</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">,</span>
+            <span class="n">license</span><span class="o">=</span><span class="s2">&quot;license&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">spec</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">field</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">FieldsContainer</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># compute data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_output</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_succeeded</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>operators_loader.py file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">operators_loader.py</span></code> 文件包含如下代码:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">custom_plugin</span> <span class="kn">import</span> <span class="n">operators</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core.custom_operator</span> <span class="kn">import</span> <span class="n">record_operator</span>
+
+
+<span class="k">def</span> <span class="nf">load_operators</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">record_operator</span><span class="p">(</span><span class="n">operators</span><span class="o">.</span><span class="n">CustomOperator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">load_operators</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="n">record_operator</span><span class="p">(</span><span class="n">operators</span><span class="o">.</span><span class="n">CustomOperator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>common.py file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">common.py</span></code> 文件包含了 Python 例程（以类和函数形式）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在这里以类和函数的形式编写所需的 python 例程。</span>
+</pre></div>
+</div>
+<p><strong>requirements.txt file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> 文件中包含类似这样的代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wheel</span>
+<span class="n">pygltflib</span>
+</pre></div>
+</div>
+<p>适用于 Windows 和 Linux 的 ZIP 文件作为资产包含在内：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">winx64.zip</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linx64.zip</span></code></p></li>
+</ul>
+<p><strong>custom_plugin.xml file</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">custom_plugin.xml</span></code> 文件中包含类似以下内容的代码：</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;Environment&gt;</span>
+<span class="w">	</span><span class="nt">&lt;Windows&gt;</span>
+<span class="w">		</span><span class="nt">&lt;CUSTOM_SITE&gt;</span>$(THIS_XML_FOLDER)/custom_plugin/assets/winx64.zip;$(CUSTOM_SITE)<span class="nt">&lt;/CUSTOM_SITE&gt;</span>
+<span class="w">		</span><span class="nt">&lt;LOAD_DEFAULT_DPF_SITE&gt;</span>true<span class="nt">&lt;/LOAD_DEFAULT_DPF_SITE&gt;</span>
+<span class="w">	</span><span class="nt">&lt;/Windows&gt;</span>
+<span class="w">	</span><span class="nt">&lt;Linux&gt;</span>
+<span class="w">		</span><span class="nt">&lt;CUSTOM_SITE&gt;</span>$(THIS_XML_FOLDER)/custom_plugin/assets/linx64.zip:$(CUSTOM_SITE)<span class="nt">&lt;/CUSTOM_SITE&gt;</span>
+<span class="w">		</span><span class="nt">&lt;LOAD_DEFAULT_DPF_SITE&gt;</span>true<span class="nt">&lt;/LOAD_DEFAULT_DPF_SITE&gt;</span>
+<span class="w">	</span><span class="nt">&lt;/Linux&gt;</span>
+<span class="nt">&lt;/Environment&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="use-custom-operators">
+<h2>Use custom operators<a class="headerlink" href="#use-custom-operators" title="Link to this heading">#</a></h2>
+<p><strong>使用自定义操作符</strong></p>
+<p>创建自定义操作符后，可以使用 <code class="xref py py-func docutils literal notranslate"><span class="pre">ansys.dpf.core.core.load_library()</span></code> 方法加载它。
+第一个参数是插件所在目录的路径。第二个参数是 <code class="docutils literal notranslate"><span class="pre">py_</span></code> 加上任何标识插件的名称。最后一个参数是记录运算符的函数名称。</p>
+<p>对于单个脚本的插件，第二个参数应该是 <code class="docutils literal notranslate"><span class="pre">py_</span></code> 加上 Python 文件名：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpf</span><span class="o">.</span><span class="n">load_library</span><span class="p">(</span>
+<span class="sa">r</span><span class="s2">&quot;path/to/plugins&quot;</span><span class="p">,</span>
+<span class="s2">&quot;py_custom_plugin&quot;</span><span class="p">,</span> <span class="c1">#if the load_operators function is defined in path/to/plugins/custom_plugin.py</span>
+<span class="s2">&quot;load_operators&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>对于插件包，第二个参数应为 <code class="docutils literal notranslate"><span class="pre">py_</span></code> 加上任何名称：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpf</span><span class="o">.</span><span class="n">load_library</span><span class="p">(</span>
+<span class="sa">r</span><span class="s2">&quot;path/to/plugins/custom_plugin&quot;</span><span class="p">,</span>
+<span class="s2">&quot;py_my_custom_plugin&quot;</span><span class="p">,</span> <span class="c1">#if the load_operators function is defined in path/to/plugins/custom_plugin/__init__.py</span>
+<span class="s2">&quot;load_operators&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>加载插件后，就可以实例化自定义操作符：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_operator</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Operator</span><span class="p">(</span><span class="s2">&quot;custom_operator&quot;</span><span class="p">)</span> <span class="c1"># if &quot;custom_operator&quot; is what is returned by the ``name`` property</span>
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<p>更多信息，请参阅 <strong>API reference</strong> 中的 <span class="xref std std-ref">ref_custom_operator</span> ，以及 <strong>Examples</strong> 中的 <a class="reference internal" href="../examples/08-python-operators/index.html#python-operators"><span class="std std-ref">Examples of creating custom operator plugins</span></a> 。</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-module">Install module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-operators">Create operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operator-plugin">Basic operator plugin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plug-in-package-with-multiple-operators">Plug-in package with multiple operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#third-party-dependencies">Third-party dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-custom-operators">Use custom operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/custom_operators.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.15.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

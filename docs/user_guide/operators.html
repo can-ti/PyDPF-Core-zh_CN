@@ -1,0 +1,974 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Operators &#8212; PyDPF-Core</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css\ansys_sphinx_theme.css?v=35e44410" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed0b7eb7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+ 
+<link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../_static/documentation_options.js?v=1e8b1a81"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js\table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/operators';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://dpf.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.12';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Fields container and fields" href="fields_container.html" />
+    <link rel="prev" title="DPF model" href="model.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="../_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="../search.html"
+  method="get"
+>
+  <i class="fa fa-search" aria-hidden="true" id="search-icon"></i>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pydpf-core-v0-12">PyDPF-Core</option>
+    
+  </select>
+  
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "";
+    var indexUid = "pydpf-core-v0-12";
+  </script>
+
+  <script src="../_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="PyDPF-Core - Home"/>
+    <script>document.write(`<img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="PyDPF-Core - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../operator_reference.html">
+                        Operators
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../concepts/index.html">
+                        Concepts
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pydpf-core" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../operator_reference.html">
+                        Operators
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../concepts/index.html">
+                        Concepts
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../contributing.html">
+                        Contribute
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pydpf-core" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">User guide</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Operators</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="operators">
+<span id="ref-user-guide-operators"></span><h1>Operators<a class="headerlink" href="#operators" title="Link to this heading">#</a></h1>
+<p>运算符是用于创建、转换和流式传输数据的主要对象。在 DPF 中，您可以使用运算符加载、操作和输出数据。</p>
+<p>每个运算符都包含 <code class="docutils literal notranslate"><span class="pre">input</span></code> 和 <code class="docutils literal notranslate"><span class="pre">output</span></code> 属性，通过它们可以建立各种输入和输出连接。</p>
+<p>在评估过程中，运算符根据其描述来处理输入，并计算出相应的输出。</p>
+<figure class="align-default">
+<img alt="../_images/operator_drawing.svg" src="../_images/operator_drawing.svg" /></figure>
+<p>您可以将一个运算符的输出附加到另一个运算符的输入，将运算符串联起来，从而创建工作流，进行简单或复杂的数据处理。通过 “懒惰评估”，DPF 可高效处理数据，仅在评估最终运算符和请求数据时才评估每个运算符。</p>
+<p>例如，如果您想得到结果的最大归一化位移，可以按以下顺序构造运算符：</p>
+<figure class="align-default">
+<img alt="../_images/max_u_norm.png" src="../_images/max_u_norm.png" />
+</figure>
+<p>本例展示了如何计算结果的最大归一化位移：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">ops</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">find_simple_bar</span><span class="p">())</span>
+<span class="n">displacement</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">displacement</span><span class="p">)</span>
+<span class="n">min_max</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">min_max</span><span class="o">.</span><span class="n">min_max</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">max_displacement</span> <span class="o">=</span> <span class="n">min_max</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">field_max</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>这种方法完全在 DPF 服务中高效地计算出结果的最大位移，在 DPF 得出你想要的求解数据之前，不需要从 DPF 向 Python 传输任何数据。</p>
+<p>DPF operator 可以自动获得许可证，这意味着它需要通过许可证检查才能运行。许可证类型可以是特定的，也可以是给定列表中的，并在运算符级别定义。
+有关 DPF 许可逻辑的更多信息，请参阅 <a class="reference internal" href="server_context.html#user-guide-server-context"><span class="std std-ref">Server context</span></a> 。</p>
+<p>DPF 运算符库非常庞大，包括文件阅读器和数学、几何及逻辑转换。有关该运算符库的更多信息，请参见 <a class="reference internal" href="../operator_reference.html#ref-dpf-operators-reference"><span class="std std-ref">Operators</span></a> 。</p>
+<section id="create-operators">
+<h2>Create operators<a class="headerlink" href="#create-operators" title="Link to this heading">#</a></h2>
+<p><strong>创建运算符</strong></p>
+<p>每个运算符都属于 <span class="xref std std-ref">ref_operator</span> 类型。您可以使用 <span class="xref std std-ref">ansys.dpf.core.operators package</span> 中的任何派生类在 Python 中创建一个实例，
+也可以使用指示运算符类型的内部名称字符串直接使用 <span class="xref std std-ref">ref_operator</span> 类创建一个实例。更多信息，请参阅 <a class="reference internal" href="../operator_reference.html#ref-dpf-operators-reference"><span class="std std-ref">Operators</span></a> 。</p>
+<p>本例演示如何创建位移运算符：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">ops</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span> <span class="c1"># or op = ansys.dpf.core.Operator(&quot;U&quot;)</span>
+</pre></div>
+</div>
+<p>您可以通过打印来查看该运算符的说明、可用输入和可用输出：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPF U Operator:
+  Read/compute nodal displacements by calling the readers defined by the datasources.
+  Inputs:
+         time_scoping (optional) [scoping, int32, vector&lt;int32&gt;, double, field, vector&lt;double&gt;]: time/freq (use doubles or field), time/freq set ids (use ints or scoping) or time/freq step ids (use scoping with TimeFreq_steps location) required in output
+         mesh_scoping (optional) [scopings_container, scoping]: nodes or elements scoping required in output. The scoping&#39;s location indicates whether nodes or elements are asked. Using scopings container enables to split the result fields container in domains
+         fields_container (optional) [fields_container]: Fields container already allocated modified inplace
+         streams_container (optional) [streams_container]: result file container allowed to be kept open to cache data
+         data_sources [data_sources]: result file path container, used if no streams are set
+         bool_rotate_to_global (optional) [bool]: if true the field is rotated to global coordinate system (default true)
+         mesh (optional) [abstract_meshed_region, meshes_container]: prevents from reading the mesh in the result files
+         read_cyclic (optional) [enum dataProcessing::ECyclicReading, int32]: if 0 cyclic symmetry is ignored, if 1 cyclic sector is read, if 2 cyclic expansion is done, if 3 cyclic expansion is done and stages are merged (default is 1)
+  Outputs:
+         fields_container [fields_container]
+</pre></div>
+</div>
+<p>或者，也可以使用 <code class="docutils literal notranslate"><span class="pre">Model</span></code> 对象实例化结果提供程序。更多信息，请参阅 <a class="reference internal" href="model.html#user-guide-model"><span class="std std-ref">DPF model</span></a> 。</p>
+<p>在使用该模型的结果时，结果的文件路径直接与运算符相连，这意味着您只能为您的结果文件实例化可用的结果：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">ops</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">find_simple_bar</span><span class="p">())</span>
+<span class="n">displacement</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="connect-operators">
+<h2>Connect operators<a class="headerlink" href="#connect-operators" title="Link to this heading">#</a></h2>
+<p><strong>连接运算符</strong></p>
+<p>位移运算符唯一需要的输入是 <code class="docutils literal notranslate"><span class="pre">data_sources</span></code> 输入（见上文）。要在包含置换结果的 <code class="docutils literal notranslate"><span class="pre">fields_container</span></code> 对象中计算输出，必须提供结果文件的路径。</p>
+<p>您可以通过两种方式创建数据源：</p>
+<ul class="simple">
+<li><p>使用 <span class="xref std std-ref">ref_model</span> 类。</p></li>
+<li><p>使用 <span class="xref std std-ref">ref_data_sources</span> 类。</p></li>
+</ul>
+<p>由于其他几个示例使用了 <code class="docutils literal notranslate"><span class="pre">Model</span></code> 类，因此本示例使用了 <code class="docutils literal notranslate"><span class="pre">DataSources</span></code> 类：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="n">data_src</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">DataSources</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">find_multishells_rst</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_src</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPF  DataSources:
+Result files:
+   result key: rst and path: path\...\ansys\dpf\core\examples\model_with_ns.rst
+Secondary files:
+</pre></div>
+</div>
+<p>这段代码展示了如何将数据源连接到位移运算符：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">op</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">data_sources</span><span class="p">(</span><span class="n">data_src</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>您还可以将其他可选输入连接到位移运算符。打印运算符的输出显示，可以连接 <span class="xref std std-ref">ref_scoping</span> 类型的 <code class="docutils literal notranslate"><span class="pre">mesh_scoping</span></code> 来处理空间子集。还可以连接一个整数列表的 <code class="docutils literal notranslate"><span class="pre">time_scoping</span></code> 来处理时间子集：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mesh_scoping</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">mesh_scoping_factory</span><span class="o">.</span><span class="n">nodal_scoping</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">op</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">mesh_scoping</span><span class="p">(</span><span class="n">mesh_scoping</span><span class="p">)</span>
+<span class="n">op</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">time_scoping</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="evaluate-operators">
+<h2>Evaluate operators<a class="headerlink" href="#evaluate-operators" title="Link to this heading">#</a></h2>
+<p><strong>计算运算符</strong></p>
+<p>分配了所有必需的输入后，您就可以从运算符输出 <code class="xref py py-class docutils literal notranslate"><span class="pre">ansys.dpf.core.fields_container</span></code> 类：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fc</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">fields_container</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPF displacement(s)Fields Container
+  with 1 field(s)
+  defined on labels: time
+
+  with:
+  - field 0 {time:  1} with Nodal location, 3 components and 2 entities.
+</pre></div>
+</div>
+<p>运行时，运算符会检查是否已分配所有必需的输入。如果运算符的输入缺失，则会引发类似此例的 <code class="docutils literal notranslate"><span class="pre">DPFServerException</span></code> 异常：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_oper</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="n">new_oper</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">fields_container</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPFServerException: U&lt;-Data sources are not defined.
+</pre></div>
+</div>
+<p>有关使用字段容器的更多信息，请参阅 <a class="reference internal" href="fields_container.html#ref-user-guide-fields-container"><span class="std std-ref">Fields container and fields</span></a> 。</p>
+</section>
+<section id="chain-operators">
+<h2>Chain operators<a class="headerlink" href="#chain-operators" title="Link to this heading">#</a></h2>
+<p><strong>链式运算符</strong></p>
+<p>要创建更复杂的计算和可定制的结果，您可以将运算符串联起来创建工作流。使用庞大的 DPF 运算符库，您可以自定义结果以获得特定输出。</p>
+<p>虽然在 Python 端手动定制结果的效率远低于使用运算符，但对于一个非常小的模型来说，在客户端引入所有位移数据来计算最大值是可以接受的：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">ops</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">find_simple_bar</span><span class="p">())</span>
+<span class="n">displacement</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="n">displacement</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">fields_container</span><span class="p">()</span>
+
+<span class="c1"># 使用 NumPy 计算第一个场的最大位移。</span>
+<span class="c1"># 请注意，返回的数据是一个 numpy 数组。</span>
+
+<span class="n">disp</span> <span class="o">=</span> <span class="n">fc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">disp</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPFArray([8.20217171e-07, 6.26510654e-06, 0.00000000e+00])
+</pre></div>
+</div>
+<p>但在工业模型上，您应该使用这样的代码：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">ops</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">find_simple_bar</span><span class="p">())</span>
+<span class="n">displacement</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span>
+<span class="n">min_max</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">min_max</span><span class="o">.</span><span class="n">min_max</span><span class="p">(</span><span class="n">displacement</span><span class="p">)</span>
+<span class="n">max_field</span> <span class="o">=</span> <span class="n">min_max</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">field_max</span><span class="p">()</span>
+<span class="n">max_field</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPFArray([8.20217171e-07, 6.26510654e-06, 0.00000000e+00])
+</pre></div>
+</div>
+<p>在前面的示例中，只传输了 X、Y 和 Z 部分的最大位移，并以 numpy 数组的形式返回。</p>
+<p>对于小数据集，可以在 <a class="reference external" href="https://numpy.org/">NumpPy</a> 中计算数组的最大值。
+虽然有时可以为给定的结果类型获取整个数据数组，但很多时候并不需要这样做。
+在这种情况下，更快的方法不是将数组传输到 Python，而是在 DPF 中计算字段容器的最大值，然后将结果返回给 Python。</p>
+<p>此示例将运算符与其他运算符实例化：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">min_max</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">min_max</span><span class="o">.</span><span class="n">min_max</span><span class="p">(</span><span class="n">displacement</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这会自动连接匹配的 <code class="docutils literal notranslate"><span class="pre">displacement</span></code> 输出和匹配的 <code class="docutils literal notranslate"><span class="pre">min_max</span></code> 输入。
+您也可以使用 <code class="xref py py-meth docutils literal notranslate"><span class="pre">connect()</span></code> 方法手动连接一个运算符的输出和另一个运算符的输入：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">min_max</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">min_max</span><span class="o">.</span><span class="n">min_max</span><span class="p">()</span>
+<span class="n">min_max</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">displacement</span><span class="o">.</span><span class="n">outputs</span><span class="p">)</span>
+<span class="c1">#or</span>
+<span class="n">min_max</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">field</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">displacement</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">fields_container</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>尽管最后的方法比较冗长，但对于具有多个匹配输入或输出的运算符来说却很有用。</p>
+</section>
+<section id="types-of-operators">
+<h2>Types of operators<a class="headerlink" href="#types-of-operators" title="Link to this heading">#</a></h2>
+<p><strong>运算符的种类</strong></p>
+<p>DPF 提供了三个主要类型的运算符：</p>
+<ul class="simple">
+<li><p>用于导入或读取数据的运算符</p></li>
+<li><p>用于转换数据的运算符</p></li>
+<li><p>导出数据的运算符</p></li>
+</ul>
+<section id="operators-for-importing-or-reading-data">
+<h3>Operators for importing or reading data<a class="headerlink" href="#operators-for-importing-or-reading-data" title="Link to this heading">#</a></h3>
+<p><strong>用于导入或读取数据的运算符</strong></p>
+<p>这些运算符可从求解器文件或标准文件类型读取数据，如 <code class="docutils literal notranslate"><span class="pre">.RST</span></code> (MAPDL)、 <code class="docutils literal notranslate"><span class="pre">.D3Plot</span></code> (LS DYNA)、 <code class="docutils literal notranslate"><span class="pre">.CAS.H5/.DAT.H5</span></code> (Fluent) 或 <code class="docutils literal notranslate"><span class="pre">.CAS.CFF/.DAT.CFF</span></code> (CFX)。</p>
+<p>为了读取这些文件，不同的读取器被实现为插件。插件可以按需在任何 DPF 脚本语言中通过 “加载库” 的方法加载。由于DPF结果提供程序，文件读取器可以通用地使用，这意味着相同的运算符可以用于任何文件类型。</p>
+<p>本例说明了如何读取任何文件的位移和应力：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">ops</span>
+<span class="n">data_src</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">DataSources</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">find_multishells_rst</span><span class="p">())</span>
+<span class="n">disp</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">displacement</span><span class="p">(</span><span class="n">data_sources</span> <span class="o">=</span> <span class="n">data_src</span><span class="p">)</span>
+<span class="n">stress</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">stress</span><span class="p">(</span><span class="n">data_sources</span> <span class="o">=</span> <span class="n">data_src</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>还支持标准文件格式读取器来导入自定义数据。字段可从 CSV、VTK 和 HDF5 文件导入。</p>
+<p>有关导入和导出 CSV 文件的示例，请参阅 <a class="reference internal" href="../examples/05-file-IO/04-basic-load-file.html#ref-basic-load-file-example"><span class="std std-ref">Working with a result file</span></a> 。</p>
+</section>
+<section id="operators-for-transforming-data">
+<h3>Operators for transforming data<a class="headerlink" href="#operators-for-transforming-data" title="Link to this heading">#</a></h3>
+<p><strong>用于转换数据的运算符</strong></p>
+<p>字段是 DPF 中的主要数据容器。大多数转换数据的运算符都将字段或字段容器作为输入，并将转换后的字段或字段容器作为输出返回。您可以对模拟数据执行分析、平均或过滤操作。</p>
+<p>例如，在创建完一个字段后，你可以使用缩放和筛选运算符：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">ops</span>
+
+<span class="n">field1</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">nentities</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">field1</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">7.0</span><span class="p">,</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">9.0</span><span class="p">]</span>
+<span class="n">field1</span><span class="o">.</span><span class="n">scoping</span><span class="o">.</span><span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">field1</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;m&#39;</span>
+
+<span class="c1">#example 1 analytic operator: scale operator</span>
+<span class="n">op1</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">scale</span><span class="p">()</span>
+<span class="n">op1</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">field</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">field1</span><span class="p">)</span>
+<span class="n">op1</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">ponderation</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">op1</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">field</span><span class="p">()</span>
+<span class="n">out</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPFArray([[ 2.,  4.,  6.],
+     [ 8., 10., 12.],
+     [14., 16., 18.]])
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#example 2 filtering operator</span>
+<span class="n">op2</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">field_high_pass</span><span class="p">()</span>
+<span class="n">op2</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">field</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">field1</span><span class="p">)</span>
+<span class="n">op2</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">threshold</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">op2</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">field</span><span class="p">()</span>
+<span class="n">out</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPFArray([[4., 5., 6.],
+     [7., 8., 9.]])
+</pre></div>
+</div>
+</section>
+<section id="operators-for-exporting-data">
+<h3>Operators for exporting data<a class="headerlink" href="#operators-for-exporting-data" title="Link to this heading">#</a></h3>
+<p><strong>用于导出数据的运算符</strong></p>
+<p>使用 DPF 读取或转换仿真数据后，您可能希望将结果以特定格式导出，以便在其他环境中使用或保存，供将来使用 DPF 时使用。支持导出的文件格式包括 VTK、H5、CSV 和 TXT（序列化运算符）。
+导出运算符通常与导入运算符匹配，允许您重复使用数据。在 <a class="reference internal" href="../operator_reference.html#ref-dpf-operators-reference"><span class="std std-ref">Operators</span></a> 中，<strong>Entry</strong> 和 <strong>Premium</strong> 部分都有一个 <strong>Serialization</strong> 类别，可显示可用的导入和导出运算符。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">ops</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">find_multishells_rst</span><span class="p">())</span>
+<span class="n">disp</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span>
+<span class="n">vtk</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">serialization</span><span class="o">.</span><span class="n">vtk_export</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;c:/temp/file.vtk&#39;</span><span class="p">,</span>
+    <span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">meshed_region</span><span class="p">,</span> <span class="n">fields1</span><span class="o">=</span><span class="n">disp</span><span class="p">)</span>
+<span class="n">vtk</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>本例演示了如果 Python 客户端与服务器不在同一台机器上，如何使用导入和导出运算符：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.dpf</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">dpf</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">from</span> <span class="nn">ansys.dpf.core</span> <span class="kn">import</span> <span class="n">operators</span> <span class="k">as</span> <span class="n">ops</span>
+<span class="n">server_dir</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">make_tmp_dir_server</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">server_dir</span><span class="p">)</span>
+<span class="n">up_loaded_file</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">upload_file_in_tmp_folder</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">find_multishells_rst</span><span class="p">())</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">up_loaded_file</span><span class="p">)</span>
+<span class="n">disp</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span>
+<span class="n">vtk</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">serialization</span><span class="o">.</span><span class="n">vtk_export</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">server_dir</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">file.vtk&quot;</span><span class="p">,</span>
+    <span class="n">mesh</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">meshed_region</span><span class="p">,</span> <span class="n">fields1</span><span class="o">=</span><span class="n">disp</span><span class="p">)</span>
+<span class="n">vtk</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">dpf</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="n">server_dir</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">file.vtk&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot;c:/temp/file_downloaded.vtk&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>C:\Users\user_name\AppData\Local\Temp\dataProcessingTemp17168
+Downloading...: 759 KB|
+</pre></div>
+</div>
+</section>
+</section>
+<section id="api-reference">
+<h2>API reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h2>
+<p>有关 DPF 中所有运算符的列表，请参阅 <a class="reference internal" href="../operator_reference.html#ref-dpf-operators-reference"><span class="std std-ref">Operators</span></a> 或软件包 <span class="xref std std-ref">ansys.dpf.core.operators package</span> 。有关类本身的更多信息，请参阅 <span class="xref std std-ref">ref_operator</span> 。</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-operators">Create operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-operators">Connect operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-operators">Evaluate operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chain-operators">Chain operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-operators">Types of operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operators-for-importing-or-reading-data">Operators for importing or reading data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operators-for-transforming-data">Operators for transforming data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operators-for-exporting-data">Operators for exporting data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-reference">API reference</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/operators.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.15.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

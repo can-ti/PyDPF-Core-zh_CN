@@ -8,8 +8,8 @@ Results extraction and analysis from LS-DYNA sources
 This example provides an overview of the LS-DYNA results providers.
 
 .. note::
-    This example requires DPF 6.1 (ansys-dpf-server-2023-2-pre0) or above.
-    For more information, see :ref:`ref_compatibility`.
+   This example requires DPF 6.1 (ansys-dpf-server-2023-2-pre0) or above.
+   For more information, see :ref:`ref_compatibility`.
 
 """
 

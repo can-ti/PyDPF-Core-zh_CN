@@ -75,7 +75,7 @@ ignored_pattern += r")"
 # ones.
 extensions = [
     "enum_tools.autoenum",
-    "nbsphinx",
+    # "nbsphinx",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.autodoc",
     "sphinx.ext.graphviz",
@@ -86,6 +86,9 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     "sphinx_gallery.gen_gallery",
+    "sphinx.ext.autosummary",
+    "numpydoc",
+    "sphinx.ext.githubpages", # 这个插件会为生成后的文档添加 .nojekyll 文件， 也会为 GitHub Pages 自定义域名添加 CNAME 文件。 如果没有 .nojekyll， GitHub Pages 会认为 _ 开头的文件夹是 jekyll 内部文件夹， 然后将它过滤掉。
 ]
 
 typehints_defaults = "comma"
@@ -98,7 +101,7 @@ intersphinx_mapping = {
     "pyvista": ("https://docs.pyvista.org/", None),
 }
 
-autosummary_generate = True
+autosummary_generate = True # 布尔值，指示是否扫描所有找到的文档以获取自动摘要指令，并为每个指令生成存根页。默认启用。
 
 autodoc_mock_imports = ["ansys.dpf.core.examples.python_plugins"]
 
@@ -109,7 +112,7 @@ autodoc_mock_imports = ["ansys.dpf.core.examples.python_plugins"]
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = ".rst"
+source_suffix = ['.rst']
 
 # The master toctree document.
 master_doc = "index"

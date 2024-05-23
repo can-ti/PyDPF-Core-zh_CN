@@ -1,0 +1,23 @@
+﻿ansys.dpf.core
+==============
+
+.. automodule:: ansys.dpf.core
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
